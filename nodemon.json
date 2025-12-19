@@ -1,0 +1,14 @@
+{
+    "watch": ["src", "*.js", "*.json", ".env"],
+    "ext": "js,json,env",
+    "ignore": ["node_modules", "dist", "build", "logs", ".git", ".eslintrc.json", ".prettierrc"],
+    "delay": 500,
+    "verbose": false,
+    "exec": "eslint . --format=stylish && node app.js",
+    "events": {
+        "restart": "echo '\n🔍 Checking code quality...\n'"
+    },
+    "env": {
+        "NODE_ENV": "development"
+    }
+}

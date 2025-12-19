@@ -1,0 +1,177 @@
+{
+    "env": {
+        "es2021": true,
+        "node": true
+    },
+    "extends": ["airbnb-base", "prettier"],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": ["prettier"],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".json"]
+            }
+        }
+    },
+    "rules": {
+        // ============================================================================
+        // REQUIRED RULES (User Requested)
+        // ============================================================================
+
+        // No var - Force const/let only
+        "no-var": "error",
+
+        // Prefer const over let when variable is not reassigned
+        "prefer-const": "error",
+
+        // Require template literals instead of string concatenation
+        "prefer-template": "error",
+
+        // Prevent implicit type coercion (string + number)
+        "no-implicit-coercion": [
+            "error",
+            {
+                "allow": ["!!"]
+            }
+        ],
+
+        // ============================================================================
+        // BEST PRACTICE RULES (Suggested)
+        // ============================================================================
+
+        // Require === and !== instead of == and !=
+        "eqeqeq": ["error", "always"],
+
+        // Disallow unused variables
+        "no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_"
+            }
+        ],
+        
+        // Enforce # alias imports only (no direct file imports from src/)
+        "no-restricted-imports": ["error", {
+            "patterns": [
+                {
+                    "group": ["./src/*", "../src/*", "../../src/*", "../*", "./*"],
+                    "message": "Direct file imports are not allowed. Use # aliases from exports folder instead (e.g., import { something } from '#routes')"
+                },
+                {
+                    "group": ["**/src/**"],
+                    "message": "Direct imports from src/ are not allowed. Use # aliases from exports folder instead."
+                }
+            ]
+        }],
+
+        // Require await in async functions
+        "require-await": "error",
+
+        // Disallow nested ternary expressions
+        "no-nested-ternary": "error",
+
+        // Disallow magic numbers (relaxed for common defaults)
+        "no-magic-numbers": [
+            "warn",
+            {
+                "ignore": [0, 1, -1, 2, 10, 15, 24, 100, 587, 3000, 5432, 8080],
+                "ignoreArrayIndexes": true,
+                "ignoreDefaultValues": true,
+                "enforceConst": true
+            }
+        ],
+
+        // Require arrow functions for callbacks
+        "prefer-arrow-callback": "error",
+
+        // Require consistent return statements
+        "consistent-return": "error",
+
+        // Disallow use of undefined variable
+        "no-undefined": "error",
+
+        // Require default case in switch statements
+        "default-case": "error",
+
+        // Disallow empty functions
+        "no-empty-function": "warn",
+
+        // Require error handling in callbacks
+        "handle-callback-err": "error",
+
+        // Disallow async functions without await
+        "no-async-promise-executor": "error",
+
+        // ============================================================================
+        // CODE STYLE RULES
+        // ============================================================================
+
+        // Enforce consistent brace style
+        "curly": ["error", "all"],
+
+        // Require camelCase naming convention
+        "camelcase": [
+            "error",
+            {
+                "properties": "never",
+                "ignoreDestructuring": false
+            }
+        ],
+
+        // Disallow multiple empty lines
+        "no-multiple-empty-lines": [
+            "error",
+            {
+                "max": 2,
+                "maxEOF": 0
+            }
+        ],
+
+        // Require newline at end of file
+        "eol-last": ["error", "always"],
+
+        // Disallow trailing whitespace
+        "no-trailing-spaces": "error",
+
+        // ============================================================================
+        // PRETTIER INTEGRATION
+        // ============================================================================
+
+        // Run Prettier as an ESLint rule
+        "prettier/prettier": "error",
+
+        // ============================================================================
+        // AIRBNB OVERRIDES (Relaxed for flexibility)
+        // ============================================================================
+
+        // Allow unnamed default exports
+        "import/prefer-default-export": "off",
+
+        // Disable unresolved imports (Node.js handles # imports natively)
+        "import/no-unresolved": "off",
+
+        // Allow underscore dangle for private methods
+        "no-underscore-dangle": [
+            "error",
+            {
+                "allowAfterThis": true,
+                "allowAfterSuper": true
+            }
+        ],
+
+        // Relax function length limit
+        "max-len": [
+            "warn",
+            {
+                "code": 100,
+                "ignoreComments": true,
+                "ignoreStrings": true,
+                "ignoreTemplateLiterals": true
+            }
+        ]
+    }
+}
