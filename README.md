@@ -37,6 +37,17 @@ This repository is more than just a boilerplate; it's a **Scalable Architectural
 
 ---
 
+## 🛠 Future Roadmap
+
+This template is actively maintained. Upcoming updates will include:
+
+- 🚀 **Schema Validation**: Integrated Joi/Zod middleware for automatic request body validation.
+- 📦 **More Utilities**: Advanced file upload (S3/Local) and Email templating (Nodemailer).
+- 🧪 **Unit Testing**: Pre-configured Jest + Supertest environment for API testing.
+- 🐳 **Dockerization**: Complete Docker Compose setup for localized development.
+
+---
+
 ## 🛠 Tech Stack
 
 | Type | Technology |
