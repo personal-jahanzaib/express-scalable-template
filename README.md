@@ -2,6 +2,8 @@
 
 > A production-ready, scalable Express.js template with PostgreSQL, JWT authentication, ESLint, Prettier, and automated code quality checks. Features environment-based configuration, real-time linting, and modern ES6+ best practices.
 
+**Author:** [Jahan Zaib](https://github.com/personal-jahanzaib) | [LinkedIn](https://www.linkedin.com/in/jahanzaib-developer/)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
 [![Express.js](https://img.shields.io/badge/express-5.2.1-green)](https://expressjs.com/)
@@ -485,11 +487,9 @@ To prevent VS Code from auto-updating import paths when you move files, add thes
 
 ## ⭐ Support This Project
 
-If you find this template helpful, please consider giving it a star on GitHub! ⭐
+If you find this template helpful, please consider giving it a star on GitHub!
 
 Your support helps others discover this project and motivates continued development.
-
-[![GitHub stars](https://img.shields.io/github/stars/personal-jahanzaib/express-scalable-template?style=social)](https://github.com/personal-jahanzaib/express-scalable-template/stargazers)
 
 ---
 
@@ -499,16 +499,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 👤 Author
-
-**Jahan Zaib**
-
-- GitHub: [@personal-jahanzaib](https://github.com/personal-jahanzaib)
-- LinkedIn: [jahanzaib-developer](https://www.linkedin.com/in/jahanzaib-developer/)
-
----
-
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - [Express.js](https://expressjs.com/) - Fast, unopinionated web framework
 - [Sequelize](https://sequelize.org/) - Promise-based ORM
