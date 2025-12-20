@@ -4,7 +4,7 @@
  */
 
 class AsyncUtil {
-    /**
+  /**
      * Wraps an async route handler to catch errors automatically
      * Eliminates the need for try-catch blocks in every controller
      * @param {Function} fn - Async function to wrap
@@ -27,11 +27,11 @@ class AsyncUtil {
      *     res.json(user);
      * });
      */
-    static asyncHandler(fn) {
-        return (req, res, next) => {
-            Promise.resolve(fn(req, res, next)).catch(next);
-        };
-    }
+  static asyncHandler(fn) {
+    return (req, res, next) => {
+      Promise.resolve(fn(req, res, next)).catch(next);
+    };
+  }
 }
 
 export default AsyncUtil;

@@ -3,12 +3,12 @@
         "es2021": true,
         "node": true
     },
-    "extends": ["airbnb-base", "prettier"],
+    "extends": ["airbnb-base"],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": ["prettier"],
+
     "settings": {
         "import/resolver": {
             "node": {
@@ -148,13 +148,6 @@
 
         // Disallow trailing whitespace
         "no-trailing-spaces": "error",
-
-        // ============================================================================
-        // PRETTIER INTEGRATION
-        // ============================================================================
-
-        // Run Prettier as an ESLint rule
-        "prettier/prettier": "error",
 
         // ============================================================================
         // AIRBNB OVERRIDES (Relaxed for flexibility)

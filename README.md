@@ -1,6 +1,6 @@
 # Express.js Scalable Template
 
-> A production-ready, scalable Express.js template with PostgreSQL, JWT authentication, ESLint, Prettier, and automated code quality checks. Features environment-based configuration, real-time linting, and modern ES6+ best practices.
+> A production-ready, scalable Express.js template with PostgreSQL, JWT authentication, and ESLint. Features environment-based configuration, centralized exports, real-time linting, and modern ES6+ best practices.
 
 **Author:** [Jahan Zaib](https://github.com/personal-jahanzaib) | [LinkedIn](https://www.linkedin.com/in/jahanzaib-developer/)
 
@@ -22,11 +22,9 @@
 8. [Development Workflow](#-development-workflow)
 9. [NPM Scripts](#-npm-scripts)
 10. [ESLint Rules](#-eslint-rules)
-11. [Prettier Configuration](#-prettier-configuration)
-12. [Pre-Commit Hooks](#-pre-commit-hooks)
-13. [VS Code Settings](#-vs-code-settings-optional)
-14. [Contributing](#-contributing)
-15. [License](#-license)
+11. [VS Code Settings](#-vs-code-settings-optional)
+12. [Contributing](#-contributing)
+13. [License](#-license)
 
 ---
 
@@ -43,9 +41,7 @@
 ### **Code Quality**
 
 - ✅ **ESLint** - Strict linting with Airbnb base config
-- ✅ **Prettier** - Automatic code formatting
 - ✅ **Real-Time Linting** - Instant feedback on file save via nodemon
-- ✅ **Pre-Commit Hooks** - Husky + lint-staged for quality gates
 - ✅ **Import Restrictions** - Enforced `#` alias usage, no direct file imports
 
 ### **Developer Experience**
@@ -72,13 +68,10 @@
 
 ### **Development Dependencies**
 
-| Package       | Version | Purpose            |
-| ------------- | ------- | ------------------ |
-| `eslint`      | 8.57.1  | Code linting       |
-| `prettier`    | 3.7.4   | Code formatting    |
-| `nodemon`     | 3.1.11  | Auto-restart       |
-| `husky`       | 9.1.7   | Git hooks          |
-| `lint-staged` | 16.2.7  | Pre-commit linting |
+| Package   | Version | Purpose      |
+| --------- | ------- | ------------ |
+| `eslint`  | 8.57.1  | Code linting |
+| `nodemon` | 3.1.11  | Auto-restart |
 
 ---
 
@@ -99,7 +92,7 @@ express-scalable-template/
 ├── .env                       # Environment variables (gitignored)
 ├── .env.example               # Template for team
 ├── .eslintrc.json             # ESLint configuration
-├── .prettierrc                # Prettier configuration
+
 ├── nodemon.json               # Nodemon configuration
 ├── package.json               # Dependencies and scripts
 ├── LICENSE                    # MIT License
@@ -329,15 +322,7 @@ npm run dev
 - See errors instantly in terminal
 - Server restarts if no errors
 
-### **3. Format Code**
-
-```bash
-npm run format
-```
-
-Formats all files with Prettier.
-
-### **4. Fix Linting Errors**
+### **3. Fix Linting Errors**
 
 ```bash
 npm run lint:fix
@@ -345,29 +330,23 @@ npm run lint:fix
 
 Auto-fixes ESLint errors where possible.
 
-### **5. Commit Changes**
+### **4. Commit Changes**
 
 ```bash
 git add .
 git commit -m "Your message"
 ```
 
-- Husky runs pre-commit hook
-- lint-staged formats and lints staged files
-- Commit succeeds only if all checks pass
-
 ---
 
 ## 📜 NPM Scripts
 
-| Script         | Command              | Description                                            |
-| -------------- | -------------------- | ------------------------------------------------------ |
-| `dev`          | `nodemon app.js`     | Start development server with auto-restart and linting |
-| `start`        | `node app.js`        | Start production server                                |
-| `lint`         | `eslint .`           | Check for linting errors                               |
-| `lint:fix`     | `eslint . --fix`     | Auto-fix linting errors                                |
-| `format`       | `prettier --write .` | Format all files                                       |
-| `format:check` | `prettier --check .` | Check if files are formatted                           |
+| Script    | Command          | Description                                            |
+| --------- | ---------------- | ------------------------------------------------------ |
+| `dev`     | `nodemon app.js` | Start development server with auto-restart and linting |
+| `start`   | `node app.js`    | Start production server                                |
+| `lint`    | `eslint .`       | Check for linting errors                               |
+| `lint:fix`| `eslint . --fix` | Auto-fix linting errors                                |
 
 ---
 
@@ -443,55 +422,7 @@ import { another } from "#controllers";
 
 ---
 
-## 🎨 Prettier Configuration
 
-```json
-{
-    "semi": true,
-    "trailingComma": "es5",
-    "singleQuote": false,
-    "printWidth": 100,
-    "tabWidth": 4,
-    "useTabs": false,
-    "arrowParens": "always",
-    "endOfLine": "lf"
-}
-```
-
-### **Key Settings**
-
-- **4 spaces** for indentation
-- **Semicolons** required
-- **Double quotes** for strings
-- **100 characters** max line width
-- **ES5 trailing commas**
-
----
-
-## 🪝 Pre-Commit Hooks
-
-The template uses **Husky** and **lint-staged** to ensure code quality before commits.
-
-### **What Happens on Commit?**
-
-1. **Husky** intercepts the commit
-2. **lint-staged** runs on staged files only:
-    - Runs `eslint --fix` on `.js` files
-    - Runs `prettier --write` on `.js` and `.json` files
-3. Commit succeeds only if all checks pass
-
-### **Configuration**
-
-```json
-{
-    "lint-staged": {
-        "*.js": ["eslint --fix", "prettier --write"],
-        "*.json": ["prettier --write"]
-    }
-}
-```
-
----
 
 ## 🆚 VS Code Settings (Optional)
 
@@ -529,7 +460,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Express.js](https://expressjs.com/) - Fast, unopinionated web framework
 - [Sequelize](https://sequelize.org/) - Promise-based ORM
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) - ESLint config
-- [Prettier](https://prettier.io/) - Code formatter
+
 
 ---
 
