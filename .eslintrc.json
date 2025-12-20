@@ -16,6 +16,15 @@
             }
         }
     },
+    "overrides": [
+        {
+            "files": ["src/exports/**/*.js"],
+            "rules": {
+                "no-restricted-imports": "off",
+                "import/extensions": "off"
+            }
+        }
+    ],
     "rules": {
         // ============================================================================
         // REQUIRED RULES (User Requested)
@@ -53,20 +62,23 @@
                 "varsIgnorePattern": "^_"
             }
         ],
-        
+
         // Enforce # alias imports only (no direct file imports from src/)
-        "no-restricted-imports": ["error", {
-            "patterns": [
-                {
-                    "group": ["./src/*", "../src/*", "../../src/*", "../*", "./*"],
-                    "message": "Direct file imports are not allowed. Use # aliases from exports folder instead (e.g., import { something } from '#routes')"
-                },
-                {
-                    "group": ["**/src/**"],
-                    "message": "Direct imports from src/ are not allowed. Use # aliases from exports folder instead."
-                }
-            ]
-        }],
+        "no-restricted-imports": [
+            "error",
+            {
+                "patterns": [
+                    {
+                        "group": ["./src/*", "../src/*", "../../src/*", "../*", "./*"],
+                        "message": "Direct file imports are not allowed. Use # aliases from exports folder instead (e.g., import { something } from '#routes')"
+                    },
+                    {
+                        "group": ["**/src/**"],
+                        "message": "Direct imports from src/ are not allowed. Use # aliases from exports folder instead."
+                    }
+                ]
+            }
+        ],
 
         // Require await in async functions
         "require-await": "error",

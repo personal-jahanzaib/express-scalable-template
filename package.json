@@ -43,19 +43,25 @@
         "prettier": "^3.7.4"
     },
     "lint-staged": {
-      "*.js": [
-        "eslint --fix",
-        "prettier --write"
-      ],
-      "*.json": [
-        "prettier --write"
-      ]
+        "*.js": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.json": [
+            "prettier --write"
+        ]
     },
     "imports": {
         "#server": "./src/server/server.js",
         "#env": "./env.js",
         "#routes": "./src/exports/routes.js",
         "#controllers": "./src/exports/controller.js",
-        "#services": "./src/exports/services.js"
+        "#services": "./src/exports/services.js",
+        "#models": "./src/exports/models.js",
+        "#utils": "./src/exports/utils.js",
+        "#middlewares": "./src/exports/middlewares.js",
+        "#schemas": "./src/exports/schemas.js",
+        "#constants": "./src/exports/constants.js",
+        "#configs": "./src/exports/configurations.js"
     }
 }

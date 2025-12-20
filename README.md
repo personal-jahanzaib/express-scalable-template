@@ -33,6 +33,7 @@
 ## ✨ Features
 
 ### **Core Features**
+
 - ✅ **Express.js 5.x** - Modern web framework
 - ✅ **PostgreSQL + Sequelize** - Robust ORM for database operations
 - ✅ **JWT Authentication** - Secure token-based authentication
@@ -40,6 +41,7 @@
 - ✅ **Import Aliases** - Clean `#` prefix imports (e.g., `#routes`, `#controllers`)
 
 ### **Code Quality**
+
 - ✅ **ESLint** - Strict linting with Airbnb base config
 - ✅ **Prettier** - Automatic code formatting
 - ✅ **Real-Time Linting** - Instant feedback on file save via nodemon
@@ -47,6 +49,7 @@
 - ✅ **Import Restrictions** - Enforced `#` alias usage, no direct file imports
 
 ### **Developer Experience**
+
 - ✅ **Nodemon** - Auto-restart server on file changes
 - ✅ **Fast Feedback** - ESLint runs before each restart
 - ✅ **Clean Terminal** - No annoying popups or separate windows
@@ -58,22 +61,24 @@
 ## 🛠 Tech Stack
 
 ### **Production Dependencies**
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `express` | 5.2.1 | Web framework |
-| `sequelize` | 6.37.7 | PostgreSQL ORM |
-| `pg` + `pg-hstore` | 8.16.3 | PostgreSQL client |
-| `jsonwebtoken` | 9.0.3 | JWT authentication |
-| `dotenv` | 17.2.3 | Environment variables |
+
+| Package            | Version | Purpose               |
+| ------------------ | ------- | --------------------- |
+| `express`          | 5.2.1   | Web framework         |
+| `sequelize`        | 6.37.7  | PostgreSQL ORM        |
+| `pg` + `pg-hstore` | 8.16.3  | PostgreSQL client     |
+| `jsonwebtoken`     | 9.0.3   | JWT authentication    |
+| `dotenv`           | 17.2.3  | Environment variables |
 
 ### **Development Dependencies**
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `eslint` | 8.57.1 | Code linting |
-| `prettier` | 3.7.4 | Code formatting |
-| `nodemon` | 3.1.11 | Auto-restart |
-| `husky` | 9.1.7 | Git hooks |
-| `lint-staged` | 16.2.7 | Pre-commit linting |
+
+| Package       | Version | Purpose            |
+| ------------- | ------- | ------------------ |
+| `eslint`      | 8.57.1  | Code linting       |
+| `prettier`    | 3.7.4   | Code formatting    |
+| `nodemon`     | 3.1.11  | Auto-restart       |
+| `husky`       | 9.1.7   | Git hooks          |
+| `lint-staged` | 16.2.7  | Pre-commit linting |
 
 ---
 
@@ -106,6 +111,7 @@ express-scalable-template/
 ## 🚀 Getting Started
 
 ### **Prerequisites**
+
 - Node.js >= 18.0.0
 - npm >= 9.0.0
 - PostgreSQL >= 14.0
@@ -113,28 +119,32 @@ express-scalable-template/
 ### **Installation**
 
 1. **Clone the repository**
-   ```bash
-   git clone https://github.com/personal-jahanzaib/express-scalable-template.git
-   cd express-scalable-template
-   ```
+
+    ```bash
+    git clone https://github.com/personal-jahanzaib/express-scalable-template.git
+    cd express-scalable-template
+    ```
 
 2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+
+    ```bash
+    npm install
+    ```
 
 3. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
-   ```
+
+    ```bash
+    cp .env.example .env
+    # Edit .env with your configuration
+    ```
 
 4. **Start development server**
-   ```bash
-   npm run dev
-   ```
 
-   The server will start on `http://localhost:8080` (or your configured PORT).
+    ```bash
+    npm run dev
+    ```
+
+    The server will start on `http://localhost:8080` (or your configured PORT).
 
 ---
 
@@ -145,6 +155,7 @@ express-scalable-template/
 The template uses a smart environment-based configuration system in `env.js` that automatically selects the right variables based on `NODE_ENV`.
 
 #### **Available Environments**
+
 - `local` - Local development
 - `development` - Development server
 - `staging` - Staging server
@@ -156,38 +167,38 @@ The template uses a smart environment-based configuration system in `env.js` tha
 import config from "#env";
 
 // Server configuration
-config.server.port          // Auto-selected based on NODE_ENV
-config.server.environment   // Current environment
+config.server.port; // Auto-selected based on NODE_ENV
+config.server.environment; // Current environment
 
 // Database configuration (auto-selected)
-config.database.host        // DB_LOCAL_HOST, DB_DEV_HOST, etc.
-config.database.port
-config.database.name
-config.database.user
-config.database.password
+config.database.host; // DB_LOCAL_HOST, DB_DEV_HOST, etc.
+config.database.port;
+config.database.name;
+config.database.user;
+config.database.password;
 
 // JWT configuration
-config.jwt.secret
-config.jwt.expiresIn
-config.jwt.refreshExpiresIn
+config.jwt.secret;
+config.jwt.expiresIn;
+config.jwt.refreshExpiresIn;
 
 // Client URL (auto-selected)
-config.client.url           // CLIENT_URL_LOCAL, CLIENT_URL_DEV, etc.
+config.client.url; // CLIENT_URL_LOCAL, CLIENT_URL_DEV, etc.
 
 // CORS (auto-selected)
-config.cors.origin          // Array of allowed origins
+config.cors.origin; // Array of allowed origins
 
 // API configuration
-config.api.version
-config.api.prefix
-config.api.rateLimit.maxRequests
-config.api.rateLimit.windowMinutes
+config.api.version;
+config.api.prefix;
+config.api.rateLimit.maxRequests;
+config.api.rateLimit.windowMinutes;
 
 // Email configuration
-config.email.host
-config.email.port
-config.email.user
-config.email.password
+config.email.host;
+config.email.port;
+config.email.user;
+config.email.password;
 ```
 
 #### **Example `.env` File**
@@ -230,13 +241,13 @@ The template uses Node.js subpath imports for clean, maintainable code.
 
 ### **Available Aliases**
 
-| Alias | Path | Purpose |
-|-------|------|---------|
-| `#env` | `./env.js` | Environment configuration |
-| `#server` | `./src/server/server.js` | Express server instance |
-| `#routes` | `./src/exports/routes.js` | All routes |
-| `#controllers` | `./src/exports/controller.js` | All controllers |
-| `#services` | `./src/exports/services.js` | All services |
+| Alias          | Path                          | Purpose                   |
+| -------------- | ----------------------------- | ------------------------- |
+| `#env`         | `./env.js`                    | Environment configuration |
+| `#server`      | `./src/server/server.js`      | Express server instance   |
+| `#routes`      | `./src/exports/routes.js`     | All routes                |
+| `#controllers` | `./src/exports/controller.js` | All controllers           |
+| `#services`    | `./src/exports/services.js`   | All services              |
 
 ### **Usage Example**
 
@@ -266,12 +277,14 @@ import server from "./src/server/server.js";
 ### **Real-Time Linting**
 
 When you run `npm run dev`, nodemon automatically:
+
 1. Watches for file changes
 2. Runs ESLint on all files
 3. Shows errors in the terminal
 4. Only starts server if no errors
 
 **Example Output:**
+
 ```bash
 🔍 Checking code quality...
 
@@ -298,15 +311,18 @@ When you run `npm run dev`, nodemon automatically:
 ## 💻 Development Workflow
 
 ### **1. Start Development Server**
+
 ```bash
 npm run dev
 ```
+
 - Starts nodemon
 - Watches for file changes
 - Runs ESLint before each restart
 - Auto-restarts server on save
 
 ### **2. Make Code Changes**
+
 - Edit your files
 - Save
 - ESLint runs automatically
@@ -314,22 +330,28 @@ npm run dev
 - Server restarts if no errors
 
 ### **3. Format Code**
+
 ```bash
 npm run format
 ```
+
 Formats all files with Prettier.
 
 ### **4. Fix Linting Errors**
+
 ```bash
 npm run lint:fix
 ```
+
 Auto-fixes ESLint errors where possible.
 
 ### **5. Commit Changes**
+
 ```bash
 git add .
 git commit -m "Your message"
 ```
+
 - Husky runs pre-commit hook
 - lint-staged formats and lints staged files
 - Commit succeeds only if all checks pass
@@ -338,14 +360,14 @@ git commit -m "Your message"
 
 ## 📜 NPM Scripts
 
-| Script | Command | Description |
-|--------|---------|-------------|
-| `dev` | `nodemon app.js` | Start development server with auto-restart and linting |
-| `start` | `node app.js` | Start production server |
-| `lint` | `eslint .` | Check for linting errors |
-| `lint:fix` | `eslint . --fix` | Auto-fix linting errors |
-| `format` | `prettier --write .` | Format all files |
-| `format:check` | `prettier --check .` | Check if files are formatted |
+| Script         | Command              | Description                                            |
+| -------------- | -------------------- | ------------------------------------------------------ |
+| `dev`          | `nodemon app.js`     | Start development server with auto-restart and linting |
+| `start`        | `node app.js`        | Start production server                                |
+| `lint`         | `eslint .`           | Check for linting errors                               |
+| `lint:fix`     | `eslint . --fix`     | Auto-fix linting errors                                |
+| `format`       | `prettier --write .` | Format all files                                       |
+| `format:check` | `prettier --check .` | Check if files are formatted                           |
 
 ---
 
@@ -354,6 +376,7 @@ git commit -m "Your message"
 ### **Strict Rules (Errors)**
 
 #### **No `var` keyword**
+
 ```javascript
 // ❌ Error
 var x = 1;
@@ -364,6 +387,7 @@ let y = 2;
 ```
 
 #### **Template literals only**
+
 ```javascript
 // ❌ Error
 const message = "Hello " + name;
@@ -373,24 +397,29 @@ const message = `Hello ${name}`;
 ```
 
 #### **No implicit type coercion**
+
 ```javascript
 // ❌ Error
-const result = "5" + 3;  // "53"
+const result = "5" + 3; // "53"
 
 // ✅ Correct
-const result = Number("5") + 3;  // 8
+const result = Number("5") + 3; // 8
 ```
 
 #### **Strict equality**
+
 ```javascript
 // ❌ Error
-if (x == 5) { }
+if (x == 5) {
+}
 
 // ✅ Correct
-if (x === 5) { }
+if (x === 5) {
+}
 ```
 
 #### **Enforce # alias imports**
+
 ```javascript
 // ❌ Error
 import { something } from "./src/routes/user.js";
@@ -430,6 +459,7 @@ import { another } from "#controllers";
 ```
 
 ### **Key Settings**
+
 - **4 spaces** for indentation
 - **Semicolons** required
 - **Double quotes** for strings
@@ -446,8 +476,8 @@ The template uses **Husky** and **lint-staged** to ensure code quality before co
 
 1. **Husky** intercepts the commit
 2. **lint-staged** runs on staged files only:
-   - Runs `eslint --fix` on `.js` files
-   - Runs `prettier --write` on `.js` and `.json` files
+    - Runs `eslint --fix` on `.js` files
+    - Runs `prettier --write` on `.js` and `.json` files
 3. Commit succeeds only if all checks pass
 
 ### **Configuration**
@@ -455,13 +485,8 @@ The template uses **Husky** and **lint-staged** to ensure code quality before co
 ```json
 {
     "lint-staged": {
-        "*.js": [
-            "eslint --fix",
-            "prettier --write"
-        ],
-        "*.json": [
-            "prettier --write"
-        ]
+        "*.js": ["eslint --fix", "prettier --write"],
+        "*.json": ["prettier --write"]
     }
 }
 ```
@@ -499,7 +524,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-##  Acknowledgments
+## Acknowledgments
 
 - [Express.js](https://expressjs.com/) - Fast, unopinionated web framework
 - [Sequelize](https://sequelize.org/) - Promise-based ORM
