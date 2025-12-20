@@ -86,16 +86,8 @@
         // Disallow nested ternary expressions
         "no-nested-ternary": "error",
 
-        // Disallow magic numbers (relaxed for common defaults)
-        "no-magic-numbers": [
-            "warn",
-            {
-                "ignore": [0, 1, -1, 2, 10, 15, 24, 100, 587, 3000, 5432, 8080],
-                "ignoreArrayIndexes": true,
-                "ignoreDefaultValues": true,
-                "enforceConst": true
-            }
-        ],
+        // Disallow magic numbers (disabled per user request)
+        "no-magic-numbers": "off",
 
         // Require arrow functions for callbacks
         "prefer-arrow-callback": "error",
