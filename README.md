@@ -539,12 +539,23 @@ git commit -m "Your message"
 
 ## 📜 NPM Scripts
 
+### **Development Scripts**
+
 | Script     | Command          | Description                                     |
 | ---------- | ---------------- | ----------------------------------------------- |
 | `dev`      | `nodemon`        | Start dev server with auto-restart and auto-fix |
 | `start`    | `node app.js`    | Start production server                         |
 | `lint`     | `eslint .`       | Check for linting errors                        |
 | `lint:fix` | `eslint . --fix` | Auto-fix linting errors                         |
+
+### **Database Scripts**
+
+| Script            | Command                          | Description                    |
+| ----------------- | -------------------------------- | ------------------------------ |
+| `db:migrate`      | `npx sequelize-cli db:migrate`   | Run all pending migrations     |
+| `db:migrate:undo` | `npx sequelize-cli db:migrate:undo` | Rollback last migration     |
+| `db:seed`         | `npx sequelize-cli db:seed:all`  | Run all seeders                |
+| `db:seed:undo`    | `npx sequelize-cli db:seed:undo:all` | Undo all seeders          |
 
 ---
 

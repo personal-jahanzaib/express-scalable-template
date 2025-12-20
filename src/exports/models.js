@@ -4,6 +4,11 @@
 // Centralized export file for all Sequelize models
 // Import all models here and export them for use throughout the application
 
-// Example:
-// export { default as User } from "../app/models/User.js";
-// export { default as Post } from "../app/models/Post.js";
+// Base Model
+export { default as BaseModel } from '../models/BaseModel.js';
+
+// Models
+export { default as User } from '../models/User.js';
+
+// Example for additional models:
+// export { default as Post } from "../models/Post.js";

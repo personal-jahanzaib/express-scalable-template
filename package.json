@@ -18,7 +18,11 @@
         "dev": "nodemon",
         "start": "node app.js",
         "lint": "eslint .",
-        "lint:fix": "eslint . --fix"
+        "lint:fix": "eslint . --fix",
+        "db:migrate": "npx sequelize-cli db:migrate",
+        "db:migrate:undo": "npx sequelize-cli db:migrate:undo",
+        "db:seed": "npx sequelize-cli db:seed:all",
+        "db:seed:undo": "npx sequelize-cli db:seed:undo:all"
     },
     "dependencies": {
         "dotenv": "^17.2.3",
@@ -35,7 +39,8 @@
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-import-resolver-node": "^0.3.9",
         "eslint-plugin-import": "^2.32.0",
-        "nodemon": "^3.1.11"
+        "nodemon": "^3.1.11",
+        "sequelize-cli": "^6.6.3"
     },
     "imports": {
         "#server": "./src/server/server.js",
