@@ -21,7 +21,8 @@
 7. [Getting Started](#-getting-started)
 8. [Import Aliases](#-import-aliases)
 9. [Development Workflow](#-development-workflow)
-10. [License](#-license)
+10. [NPM Scripts](#-npm-scripts)
+11. [License](#-license)
 
 ---
 
@@ -162,6 +163,28 @@ npm run dev
 2. **Add Service**: Create in `src/services`, use `SequelizeUtil` for queries.
 3. **Add Controller**: Create in `src/controllers`, wrap methods in `AsyncUtil.asyncHandler`.
 4. **Register Route**: Add to `src/routes` and export via `src/exports/routes.js`.
+
+---
+
+## 📜 NPM Scripts
+
+### **Development Scripts**
+
+| Script | Command | Description |
+| :--- | :--- | :--- |
+| `dev` | `nodemon` | Start dev server with auto-restart and auto-lint-fix |
+| `start` | `node app.js` | Start production server |
+| `lint` | `eslint .` | Check for linting errors |
+| `lint:fix` | `eslint . --fix` | Auto-fix linting errors |
+
+### **Database Scripts**
+
+| Script | Command | Description |
+| :--- | :--- | :--- |
+| `db:migrate` | `npx sequelize-cli db:migrate` | Run all pending migrations |
+| `db:migrate:undo` | `npx sequelize-cli db:migrate:undo` | Rollback last migration |
+| `db:seed` | `npx sequelize-cli db:seed:all` | Run all seeders |
+| `db:seed:undo` | `npx sequelize-cli db:seed:undo:all` | Undo all seeders |
 
 ---
 
