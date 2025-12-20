@@ -6,3 +6,4 @@
 
 // Export middlewares
 export { default as requestLogger } from '../middlewares/requestLogger.js';
+export { default as authMiddleware } from '../middlewares/authMiddleware.js';

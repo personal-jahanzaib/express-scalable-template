@@ -43,16 +43,17 @@
         "sequelize-cli": "^6.6.3"
     },
     "imports": {
-        "#server": "./src/server/server.js",
         "#env": "./env.js",
-        "#routes": "./src/exports/routes.js",
-        "#controllers": "./src/exports/controller.js",
-        "#services": "./src/exports/services.js",
-        "#models": "./src/exports/models.js",
         "#utils": "./src/exports/utils.js",
-        "#middlewares": "./src/exports/middlewares.js",
+        "#server": "./src/server/server.js",
+        "#routes": "./src/exports/routes.js",
+        "#models": "./src/exports/models.js",
         "#schemas": "./src/exports/schemas.js",
+        "#services": "./src/exports/services.js",
         "#constants": "./src/exports/constants.js",
-        "#configs": "./src/exports/configurations.js"
+        "#syncRoutes": "./src/routes/syncRoutes.js",
+        "#configs": "./src/exports/configurations.js",
+        "#controllers": "./src/exports/controller.js",
+        "#middlewares": "./src/exports/middlewares.js"
     }
 }

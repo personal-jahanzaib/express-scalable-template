@@ -85,11 +85,17 @@ class ResponseUtil {
     statusCode = httpResponse.INTERNAL_SERVER_ERROR.code,
     errors = null,
   ) {
-    return res.status(statusCode).json({
+    const response = {
       success: false,
       message,
-      errors,
-    });
+    };
+
+    // Only include errors key if errors exist
+    if (errors) {
+      response.errors = errors;
+    }
+
+    return res.status(statusCode).json(response);
   }
 
   /**
@@ -102,7 +108,6 @@ class ResponseUtil {
     return res.status(httpResponse.UNAUTHORIZED.code).json({
       success: false,
       message,
-      errors: null,
     });
   }
 
@@ -116,7 +121,6 @@ class ResponseUtil {
     return res.status(httpResponse.FORBIDDEN.code).json({
       success: false,
       message,
-      errors: null,
     });
   }
 
@@ -130,7 +134,6 @@ class ResponseUtil {
     return res.status(httpResponse.NOT_FOUND.code).json({
       success: false,
       message,
-      errors: null,
     });
   }
 
@@ -142,11 +145,16 @@ class ResponseUtil {
      * @returns {object} Express response
      */
   static badRequest(res, message = httpResponse.BAD_REQUEST.message, errors = null) {
-    return res.status(httpResponse.BAD_REQUEST.code).json({
+    const response = {
       success: false,
       message,
-      errors,
-    });
+    };
+
+    if (errors) {
+      response.errors = errors;
+    }
+
+    return res.status(httpResponse.BAD_REQUEST.code).json(response);
   }
 
   /**
@@ -157,11 +165,16 @@ class ResponseUtil {
      * @returns {object} Express response
      */
   static validationError(res, errors, message = httpResponse.UNPROCESSABLE_ENTITY.message) {
-    return res.status(httpResponse.UNPROCESSABLE_ENTITY.code).json({
+    const response = {
       success: false,
       message,
-      errors,
-    });
+    };
+
+    if (errors) {
+      response.errors = errors;
+    }
+
+    return res.status(httpResponse.UNPROCESSABLE_ENTITY.code).json(response);
   }
 }
 
