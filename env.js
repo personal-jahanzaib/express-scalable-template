@@ -1,4 +1,18 @@
 import dotenv from 'dotenv';
+import fs from 'fs';
+import path from 'path';
+
+// Check if .env file exists
+const envPath = path.resolve(process.cwd(), '.env');
+if (!fs.existsSync(envPath)) {
+  // eslint-disable-next-line no-console
+  console.error('\n❌ ERROR: .env file not found!');
+  // eslint-disable-next-line no-console
+  console.error(`Expected location: ${envPath}`);
+  // eslint-disable-next-line no-console
+  console.error('Please create a .env file with the required environment variables.\n');
+  process.exit(1);
+}
 
 // Suppress dotenv informational messages
 process.env.DOTENV_CONFIG_QUIET = 'true';
