@@ -4,13 +4,26 @@
 // Centralized export file for all Sequelize models
 // Import all models here and export them for use throughout the application
 
-// Base Model
-export { default as BaseModel } from '../models/BaseModel.js';
-
 // Models
-export { default as User } from '../models/User.js';
-export { default as Product } from '../models/Product.js';
-export { default as ProductCategory } from '../models/ProductCategory.js';
+import User from '../models/User.js';
+import Product from '../models/Product.js';
+import BaseModel from '../models/BaseModel.js';
+import ProductCategory from '../models/ProductCategory.js';
+import initAssociations from '../models/associations.js';
 
-// Example for additional models:
-// export { default as Post } from "../models/Post.js";
+const models = {
+    User,
+    Product,
+    BaseModel,
+    ProductCategory,
+};
+
+// Initialize associations using the external logic
+initAssociations(models);
+
+export {
+    User,
+    Product,
+    BaseModel,
+    ProductCategory,
+};

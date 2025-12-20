@@ -37,6 +37,7 @@
 - ✅ **Express.js 5.x** - Modern web framework
 - ✅ **PostgreSQL + Sequelize** - Robust ORM for database operations
 - ✅ **JWT Authentication** - Secure token-based authentication with utility class
+- ✅ **Product & Category Models** - Full commerce-ready model structure with associations
 - ✅ **Environment-Based Config** - Automatic environment variable selection
 - ✅ **Import Aliases** - Clean `#` prefix imports (e.g., `#routes`, `#utils`)
 - ✅ **Auto .env Validation** - Automatic check for .env file on startup
@@ -57,6 +58,7 @@
 - ✅ **JWTUtil** - JWT token generation and verification
 - ✅ **PasswordUtil** - Password hashing and verification
 - ✅ **ResponseUtil** - Standardized API responses
+- ✅ **Seeder Tracking** - Automatic tracking of executed seeders via `SequelizeData`
 
 ### **Code Quality**
 
@@ -87,6 +89,10 @@
 | `dotenv`           | 17.2.3  | Environment variables        |
 | `winston`          | 3.19.0  | Application logging          |
 | `morgan`           | 1.10.1  | HTTP request logging         |
+| `helmet`           | 8.1.0   | Security headers             |
+| `cors`             | 2.8.5   | Cross-Origin Resource Sharing |
+| `express-rate-limit` | 8.2.1 | Rate limiting/DoS protection |
+| `compression`      | 1.8.1   | Response body compression     |
 
 ### **Development Dependencies**
 
@@ -449,9 +455,17 @@ ResponseUtil.validationError(res, errors);
 HTTP request logging using Morgan (only in local environment).
 
 ```javascript
-import { requestLogger } from "#middlewares";
-
 server.use(requestLogger);
+```
+
+### **Security & Performance Middlewares**
+
+The template includes a pre-configured stack of security and performance middlewares in `server.js`:
+
+1.  **Helmet** - Sets various security headers
+2.  **CORS** - Custom middleware with environment-based origin filtering
+3.  **Rate Limiting** - Protects against brute-force and DoS attacks (100 req/15 min)
+4.  **Compression** - Gzip compression for response bodies
 ```
 
 **Output:**
