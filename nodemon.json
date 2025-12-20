@@ -4,11 +4,11 @@
     "ignore": ["node_modules", "dist", "build", "logs", ".git", ".eslintrc.json"],
     "delay": 500,
     "verbose": false,
-    "exec": "eslint . --format=stylish && node app.js",
+    "exec": "eslint . --fix && node app.js",
     "events": {
         "restart": "echo '\n🔍 Checking code quality...\n'"
     },
     "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "local"
     }
 }
