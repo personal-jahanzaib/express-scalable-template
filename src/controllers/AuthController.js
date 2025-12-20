@@ -1,8 +1,3 @@
-// ============================================================================
-// AUTH CONTROLLER
-// ============================================================================
-// Authentication controller for handling auth-related HTTP requests
-
 import { AuthService } from '#services';
 import { AsyncUtil, ResponseUtil } from '#utils';
 

@@ -1,8 +1,3 @@
-// ============================================================================
-// RATE LIMIT MIDDLEWARE
-// ============================================================================
-// Middleware to limit the number of requests from a single IP address
-
 import rateLimit from 'express-rate-limit';
 import config from '#env';
 import { ResponseUtil } from '#utils';

@@ -1,8 +1,3 @@
-// ============================================================================
-// CORS MIDDLEWARE
-// ============================================================================
-// Middleware to enable Cross-Origin Resource Sharing with specific configurations
-
 import cors from 'cors';
 import config from '#env';
 import { httpResponse } from '#constants';

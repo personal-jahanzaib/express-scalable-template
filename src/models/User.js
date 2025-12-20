@@ -1,16 +1,8 @@
-// ============================================================================
-// USER MODEL
-// ============================================================================
-// User model with authentication and profile fields
-
 import { DataTypes } from 'sequelize';
 import { BaseModel } from '#models';
 import { sequelize } from '#configs';
 
-/**
- * User model
- * Extends BaseModel with paranoid mode (soft deletes)
- */
+
 class User extends BaseModel {
   static init() {
     return super.init(

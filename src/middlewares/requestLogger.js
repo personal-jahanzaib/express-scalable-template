@@ -1,8 +1,3 @@
-// ============================================================================
-// REQUEST LOGGER MIDDLEWARE
-// ============================================================================
-// Logs HTTP requests in local environment only using morgan
-
 import morgan from 'morgan';
 import config from '#env';
 

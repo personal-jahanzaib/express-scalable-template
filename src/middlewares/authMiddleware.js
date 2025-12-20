@@ -1,8 +1,3 @@
-// ============================================================================
-// AUTH MIDDLEWARE
-// ============================================================================
-// Middleware to validate JWT tokens and protect routes
-
 import { httpResponse } from '#constants';
 import { JWTUtil, ErrorUtil, AsyncUtil } from '#utils';
 

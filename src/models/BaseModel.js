@@ -14,12 +14,6 @@ import { Model } from 'sequelize';
  * - DeletedAt for soft deletes
  */
 class BaseModel extends Model {
-  /**
-       * Initialize the model with base configuration
-       * @param {Object} attributes - Model attributes
-       * @param {Object} options - Model options
-       * @returns {Model} Initialized model
-       */
   static init(attributes, options) {
     return super.init(attributes, {
       ...options,

@@ -1,8 +1,3 @@
-// ============================================================================
-// AUTH ROUTES
-// ============================================================================
-// Authentication routes for user registration, login, and token management
-
 import { Router } from 'express';
 import { AuthController } from '#controllers';
 

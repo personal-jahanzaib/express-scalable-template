@@ -21,12 +21,7 @@ dotenv.config();
 const { env } = process;
 const environment = env.NODE_ENV || 'local';
 
-/**
- * Helper function to get environment-specific variable
- * @param {string} prefix - Variable prefix (e.g., 'DB', 'CLIENT_URL', 'CORS_ORIGIN')
- * @param {string} suffix - Variable suffix (e.g., 'HOST', 'PORT')
- * @returns {string} Environment-specific value
- */
+
 const getEnvVar = (prefix, suffix = '') => {
   const envMap = {
     local: suffix ? `${prefix}_LOCAL_${suffix}` : `${prefix}_LOCAL`,

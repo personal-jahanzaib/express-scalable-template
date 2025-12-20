@@ -17,17 +17,17 @@ let isInitialized = false;
  * @returns {void}
  */
 const initAssociations = (models) => {
-    if (isInitialized) {
-        return;
+  if (isInitialized) {
+    return;
+  }
+
+  Object.values(models).forEach((model) => {
+    if (typeof model.associate === 'function') {
+      model.associate(models);
     }
+  });
 
-    Object.values(models).forEach((model) => {
-        if (typeof model.associate === 'function') {
-            model.associate(models);
-        }
-    });
-
-    isInitialized = true;
+  isInitialized = true;
 };
 
 export default initAssociations;

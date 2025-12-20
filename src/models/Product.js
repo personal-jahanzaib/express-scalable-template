@@ -1,7 +1,3 @@
-// ============================================================================
-// PRODUCT MODEL
-// ============================================================================
-
 import { DataTypes } from 'sequelize';
 import { BaseModel } from '#models';
 import { sequelize } from '#configs';
