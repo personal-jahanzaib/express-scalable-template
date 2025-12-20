@@ -59,6 +59,10 @@ const httpResponse = {
     code: 429,
     message: 'Too many requests',
   },
+  CORS_ERROR: {
+    code: 403,
+    message: 'The CORS policy for this site does not allow access from the specified Origin.',
+  },
 
   // ============================================================================
   // SERVER ERROR RESPONSES (5xx)
