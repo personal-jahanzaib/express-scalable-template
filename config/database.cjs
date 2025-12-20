@@ -34,5 +34,7 @@ module.exports = {
         port: parseInt(getEnvVar('DB', 'PORT'), 10) || 5432,
         dialect: getEnvVar('DB', 'DIALECT') || 'postgres',
         logging: false,
+        seederStorage: 'sequelize',
+        seederStorageTableName: 'SequelizeData',
     },
 };
