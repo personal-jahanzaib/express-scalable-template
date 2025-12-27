@@ -26,3 +26,6 @@ pnpm-lock.yaml
 # Coverage
 coverage/
 .nyc_output/
+
+# Test folder
+test/

@@ -3,22 +3,31 @@
         "es2021": true,
         "node": true
     },
-    "extends": ["airbnb-base"],
+    "ignorePatterns": [
+        "test/"
+    ],
+    "extends": [
+        "airbnb-base"
+    ],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-
     "settings": {
         "import/resolver": {
             "node": {
-                "extensions": [".js", ".json"]
+                "extensions": [
+                    ".js",
+                    ".json"
+                ]
             }
         }
     },
     "overrides": [
         {
-            "files": ["src/exports/**/*.js"],
+            "files": [
+                "src/exports/**/*.js"
+            ],
             "rules": {
                 "no-restricted-imports": "off",
                 "import/extensions": "off"
@@ -29,31 +38,29 @@
         // ============================================================================
         // REQUIRED RULES (User Requested)
         // ============================================================================
-
         // No var - Force const/let only
         "no-var": "error",
-
         // Prefer const over let when variable is not reassigned
         "prefer-const": "error",
-
         // Require template literals instead of string concatenation
         "prefer-template": "error",
-
         // Prevent implicit type coercion (string + number)
         "no-implicit-coercion": [
             "error",
             {
-                "allow": ["!!"]
+                "allow": [
+                    "!!"
+                ]
             }
         ],
-
         // ============================================================================
         // BEST PRACTICE RULES (Suggested)
         // ============================================================================
-
         // Require === and !== instead of == and !=
-        "eqeqeq": ["error", "always"],
-
+        "eqeqeq": [
+            "error",
+            "always"
+        ],
         // Disallow unused variables
         "no-unused-vars": [
             "error",
@@ -62,61 +69,58 @@
                 "varsIgnorePattern": "^_"
             }
         ],
-
         // Enforce # alias imports only (no direct file imports from src/)
         "no-restricted-imports": [
             "error",
             {
                 "patterns": [
                     {
-                        "group": ["./src/*", "../src/*", "../../src/*", "../*", "./*"],
+                        "group": [
+                            "./src/*",
+                            "../src/*",
+                            "../../src/*",
+                            "../*",
+                            "./*"
+                        ],
                         "message": "Direct file imports are not allowed. Use # aliases from exports folder instead (e.g., import { something } from '#routes')"
                     },
                     {
-                        "group": ["**/src/**"],
+                        "group": [
+                            "**/src/**"
+                        ],
                         "message": "Direct imports from src/ are not allowed. Use # aliases from exports folder instead."
                     }
                 ]
             }
         ],
-
         // Require await in async functions
         "require-await": "error",
-
         // Disallow nested ternary expressions
         "no-nested-ternary": "error",
-
         // Disallow magic numbers (disabled per user request)
         "no-magic-numbers": "off",
-
         // Require arrow functions for callbacks
         "prefer-arrow-callback": "error",
-
         // Require consistent return statements
         "consistent-return": "error",
-
         // Disallow use of undefined variable
         "no-undefined": "error",
-
         // Require default case in switch statements
         "default-case": "error",
-
         // Disallow empty functions
         "no-empty-function": "warn",
-
         // Require error handling in callbacks
         "handle-callback-err": "error",
-
         // Disallow async functions without await
         "no-async-promise-executor": "error",
-
         // ============================================================================
         // CODE STYLE RULES
         // ============================================================================
-
         // Enforce consistent brace style
-        "curly": ["error", "all"],
-
+        "curly": [
+            "error",
+            "all"
+        ],
         // Require camelCase naming convention
         "camelcase": [
             "error",
@@ -125,7 +129,6 @@
                 "ignoreDestructuring": false
             }
         ],
-
         // Disallow multiple empty lines
         "no-multiple-empty-lines": [
             "error",
@@ -134,23 +137,20 @@
                 "maxEOF": 0
             }
         ],
-
         // Require newline at end of file
-        "eol-last": ["error", "always"],
-
+        "eol-last": [
+            "error",
+            "always"
+        ],
         // Disallow trailing whitespace
         "no-trailing-spaces": "error",
-
         // ============================================================================
         // AIRBNB OVERRIDES (Relaxed for flexibility)
         // ============================================================================
-
         // Allow unnamed default exports
         "import/prefer-default-export": "off",
-
         // Disable unresolved imports (Node.js handles # imports natively)
         "import/no-unresolved": "off",
-
         // Allow underscore dangle for private methods
         "no-underscore-dangle": [
             "error",
@@ -159,7 +159,6 @@
                 "allowAfterSuper": true
             }
         ],
-
         // Relax function length limit
         "max-len": [
             "warn",
