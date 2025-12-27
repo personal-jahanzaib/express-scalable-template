@@ -10,7 +10,7 @@ class ProductService {
     };
 
     const filterConfig = {
-      search: { fields: ['name', 'sku'], operator: Op.iLike },
+      search: { fields: ['name', 'sku', 'category.name'], operator: Op.iLike },
       categoryId: { operator: Op.eq },
       minPrice: { field: 'price', operator: Op.gte, type: 'number' },
       maxPrice: { field: 'price', operator: Op.lte, type: 'number' },

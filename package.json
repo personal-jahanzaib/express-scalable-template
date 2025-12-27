@@ -17,6 +17,8 @@
   "scripts": {
     "dev": "nodemon",
     "start": "node app.js",
+    "test": "vitest",
+    "test:run": "vitest run",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "validate:types": "node scripts/validate-types.js",
@@ -45,7 +47,8 @@
     "eslint-import-resolver-node": "^0.3.9",
     "eslint-plugin-import": "^2.32.0",
     "nodemon": "^3.1.11",
-    "sequelize-cli": "^6.6.3"
+    "sequelize-cli": "^6.6.3",
+    "vitest": "^1.6.1"
   },
   "imports": {
     "#env": "./env.js",
