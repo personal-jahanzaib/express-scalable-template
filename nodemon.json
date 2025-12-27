@@ -1,14 +1,14 @@
 {
-    "watch": ["src", "*.js", "*.json", ".env"],
-    "ext": "js,json,env",
-    "ignore": ["node_modules", "dist", "build", "logs", ".git", ".eslintrc.json"],
-    "delay": 500,
-    "verbose": false,
-    "exec": "eslint . --fix && node app.js",
-    "events": {
-        "restart": "echo '\n🔍 Checking code quality...\n'"
-    },
-    "env": {
-        "NODE_ENV": "local"
-    }
+  "watch": ["src", "*.js", "*.json", ".env"],
+  "ext": "js,json,env",
+  "ignore": ["node_modules", "dist", "build", "logs", ".git", ".eslintrc.json"],
+  "delay": 500,
+  "verbose": false,
+  "exec": "npm run validate:types -- {{filename}} && eslint . --fix && node app.js",
+  "events": {
+    "restart": "echo '\n🔍 Checking code quality...\n'"
+  },
+  "env": {
+    "NODE_ENV": "local"
+  }
 }
