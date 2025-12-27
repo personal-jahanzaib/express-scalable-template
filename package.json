@@ -1,63 +1,64 @@
 {
-    "name": "express-scalable-template",
-    "version": "1.0.0",
-    "description": "A production-ready, scalable Express.js template with PostgreSQL, JWT authentication, and ESLint. Features environment-based configuration, centralized exports, and modern ES6+ best practices.",
-    "homepage": "https://github.com/personal-jahanzaib/express-scalable-template#readme",
-    "bugs": {
-        "url": "https://github.com/personal-jahanzaib/express-scalable-template/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/personal-jahanzaib/express-scalable-template.git"
-    },
-    "license": "MIT",
-    "author": "Jahan Zaib",
-    "type": "module",
-    "main": "app.js",
-    "scripts": {
-        "dev": "nodemon",
-        "start": "node app.js",
-        "lint": "eslint .",
-        "lint:fix": "eslint . --fix",
-        "db:migrate": "npx sequelize-cli db:migrate",
-        "db:migrate:undo": "npx sequelize-cli db:migrate:undo",
-        "db:seed": "npx sequelize-cli db:seed:all",
-        "db:seed:undo": "npx sequelize-cli db:seed:undo:all"
-    },
-    "dependencies": {
-        "compression": "^1.8.1",
-        "cors": "^2.8.5",
-        "dotenv": "^17.2.3",
-        "express": "^5.2.1",
-        "express-rate-limit": "^8.2.1",
-        "helmet": "^8.1.0",
-        "jsonwebtoken": "^9.0.3",
-        "morgan": "^1.10.1",
-        "pg": "^8.16.3",
-        "pg-hstore": "^2.3.4",
-        "sequelize": "^6.37.7",
-        "winston": "^3.19.0"
-    },
-    "devDependencies": {
-        "eslint": "^8.57.1",
-        "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-import-resolver-node": "^0.3.9",
-        "eslint-plugin-import": "^2.32.0",
-        "nodemon": "^3.1.11",
-        "sequelize-cli": "^6.6.3"
-    },
-    "imports": {
-        "#env": "./env.js",
-        "#utils": "./src/exports/utils.js",
-        "#server": "./src/server/server.js",
-        "#routes": "./src/exports/routes.js",
-        "#models": "./src/exports/models.js",
-        "#schemas": "./src/exports/schemas.js",
-        "#services": "./src/exports/services.js",
-        "#constants": "./src/exports/constants.js",
-        "#syncRoutes": "./src/routes/syncRoutes.js",
-        "#configs": "./src/exports/configurations.js",
-        "#controllers": "./src/exports/controller.js",
-        "#middlewares": "./src/exports/middlewares.js"
-    }
+  "name": "express-scalable-template",
+  "version": "1.0.0",
+  "description": "A production-ready, scalable Express.js template with PostgreSQL, JWT authentication, and ESLint. Features environment-based configuration, centralized exports, and modern ES6+ best practices.",
+  "homepage": "https://github.com/personal-jahanzaib/express-scalable-template#readme",
+  "bugs": {
+    "url": "https://github.com/personal-jahanzaib/express-scalable-template/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/personal-jahanzaib/express-scalable-template.git"
+  },
+  "license": "MIT",
+  "author": "Jahan Zaib",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node app.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "validate:types": "node scripts/validate-types.js",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:migrate:undo": "npx sequelize-cli db:migrate:undo",
+    "db:seed": "npx sequelize-cli db:seed:all",
+    "db:seed:undo": "npx sequelize-cli db:seed:undo:all"
+  },
+  "dependencies": {
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "pg": "^8.16.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.7",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-node": "^0.3.9",
+    "eslint-plugin-import": "^2.32.0",
+    "nodemon": "^3.1.11",
+    "sequelize-cli": "^6.6.3"
+  },
+  "imports": {
+    "#env": "./env.js",
+    "#utils": "./src/exports/utils.js",
+    "#server": "./src/server/server.js",
+    "#routes": "./src/exports/routes.js",
+    "#models": "./src/exports/models.js",
+    "#schemas": "./src/exports/schemas.js",
+    "#services": "./src/exports/services.js",
+    "#constants": "./src/exports/constants.js",
+    "#syncRoutes": "./src/routes/syncRoutes.js",
+    "#configs": "./src/exports/configurations.js",
+    "#controllers": "./src/exports/controller.js",
+    "#middlewares": "./src/exports/middlewares.js"
+  }
 }
