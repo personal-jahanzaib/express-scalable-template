@@ -45,7 +45,8 @@ $RECYCLE.BIN/
 # IDE & EDITOR FILES
 # ============================================================================
 # VSCode
-.vscode/
+.vscode/*
+!.vscode/tasks.json
 *.code-workspace
 
 # JetBrains IDEs (WebStorm, IntelliJ, etc.)

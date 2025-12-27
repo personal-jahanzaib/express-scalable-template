@@ -168,7 +168,7 @@ function findJSFiles(dir) {
 const fileArg = process.argv[2];
 let jsFiles = [];
 
-if (fileArg) {
+if (fileArg && fileArg !== '{{filename}}') {
   // Validate single file
   const filePath = path.isAbsolute(fileArg)
     ? fileArg
@@ -178,6 +178,7 @@ if (fileArg) {
   }
 } else {
   // Validate all files (fallback)
+  console.log('🔍 No specific file changed. Validating full project...');
   jsFiles = findJSFiles(rootDir);
 }
 
