@@ -16,12 +16,12 @@
 2. [Tech Stack](#-tech-stack)
 3. [Architecture & Design](#-architecture--design)
 4. [Utility Suite](#-utility-suite)
-5. [Reference Implementation (Product API)](#-reference-implementation-product-api)
-6. [Authentication Example](#-authentication-example)
-7. [Getting Started](#-getting-started)
-8. [Import Aliases](#-import-aliases)
-9. [Development Workflow](#-development-workflow)
-10. [NPM Scripts](#-npm-scripts)
+5. [Environment Configuration](#-environment-configuration)
+6. [Import Aliases](#-import-aliases)
+7. [Development Workflow](#-development-workflow)
+8. [NPM Scripts](#-npm-scripts)
+9. [Cross-OS Compatibility](#-cross-os-compatibility)
+10. [Reference Implementation (Product API)](#-reference-implementation-product-api)
 11. [License](#-license)
 
 ---
@@ -34,17 +34,7 @@ This repository is more than just a boilerplate; it's a **Scalable Architectural
 - **Clean Architecture**: Separation of Controllers (HTTP), Services (Logic), and Models (Data).
 - **Convention Over Configuration**: Pre-configured linting, security, and logging.
 - **Developer Speed**: Native support for dot-notation sorting, multi-field filtering, and meta-data pagination.
-
----
-
-## 🛠 Future Roadmap
-
-This template is actively maintained. Upcoming updates will include:
-
-- 🚀 **Schema Validation**: Integrated Joi/Zod middleware for automatic request body validation.
-- 📦 **More Utilities**: Advanced file upload (S3/Local) and Email templating (Nodemailer).
-- 🧪 **Unit Testing**: Pre-configured Jest + Supertest environment for API testing.
-- 🐳 **Dockerization**: Complete Docker Compose setup for localized development.
+- **Strict Typing**: Custom type validation script to prevent common JS pitfalls.
 
 ---
 
@@ -57,51 +47,110 @@ This template is actively maintained. Upcoming updates will include:
 | **Database** | PostgreSQL + Sequelize ORM |
 | **Security** | JWT, Helmet, CORS, Rate-Limit |
 | **Logging** | Winston + Morgan |
-| **Quality** | ESLint (Airbnb) + Nodemon |
+| **Quality** | ESLint (Airbnb) + Custom Type Validator |
+| **Tooling** | Nodemon, VS Code Tasks |
 
 ---
 
 ## 🏗 Architecture & Design
 
 ### **Layered Workflow**
-1. **Routes**: Define endpoints and apply `authMiddleware` where needed.
+1. **Routes**: Define endpoints in `src/routes` and export via `src/exports/routes.js`.
 2. **Controllers**: Handle Request/Response and use `AsyncUtil` for global error catching.
 3. **Services**: Contain business logic and interact with the database.
-4. **Models**: Define data structure and relationships (using a shared `BaseModel`).
+4. **Models**: Define data structure in `src/models`, using a shared `BaseModel` and `associations.js` for relationships.
 
-### **Centralized Exports**
-The project uses a sub-path import system to avoid "relative path hell". Instead of `../../../`, use clean aliases:
+### **Centralized Exports (Aggregator Pattern)**
+The project uses centralized export files in `src/exports/` to provide a clean, unified API for internal components. This avoids "relative path hell" and makes imports much cleaner.
+
+Example:
 ```javascript
-import { ProductService } from '#services';
-import { ResponseUtil } from '#utils';
+import { ProductService, AuthService } from '#services';
+import { ResponseUtil, JWTUtil } from '#utils';
 ```
 
 ---
 
 ## 🛠 Utility Suite
 
-### **1. SequelizeUtil (The Powerhouse)**
+### **1. SequelizeUtil**
 Standardizes the most complex parts of any API:
 - **`getSortOptions`**: Supports top-level and nested sorting (e.g., `?sortBy=category.name`).
-- **`getFilterOptions`**: Dynamic `where` clause builder with support for:
-    - `iLike` search across multiple fields (e.g., Name OR SKU).
-    - Range filters (e.g., `minPrice` / `maxPrice`).
-    - Exact matches and boolean casting.
+- **`getFilterOptions`**: Dynamic `where` clause builder (iLike search, ranges, exact matches).
 - **`getPaginationOptions`**: Automatically calculates `limit` and `offset`.
 - **`formatPaginatedResponse`**: Returns structured metadata (`totalPages`, `hasNextPage`, etc.).
 
 ### **2. AsyncUtil**
 Provides a global `asyncHandler` that eliminates the need for repetitive `try-catch` blocks in controllers.
 
-### **3. ResponseUtil**
-Ensures all API responses follow a consistent JSON structure:
-```json
-{
-  "success": true,
-  "data": { ... },
-  "message": "Success message"
-}
-```
+### **3. ResponseUtil & ErrorUtil**
+Ensures all API responses and errors follow a consistent JSON structure.
+
+---
+
+## 🌍 Environment Configuration
+
+The template uses a sophisticated environment-based configuration in `env.js`. Variables are automatically mapped based on your `NODE_ENV`.
+
+### **Smart Variable Mapping**
+Depending on your `NODE_ENV` (local, development, staging, production), `env.js` will look for specific suffixes in your `.env` file:
+
+- `DB_LOCAL_HOST`, `DB_DEV_HOST`, `DB_PROD_HOST`
+- `CLIENT_URL_LOCAL`, `CLIENT_URL_DEV`, etc.
+
+This allows you to maintain one `.env` file for all environments without name collisions.
+
+---
+
+## 🔗 Import Aliases
+
+| Alias | Target | Description |
+| :--- | :--- | :--- |
+| `#env` | `env.js` | Environment configuration |
+| `#utils` | `src/exports/utils.js` | Utility functions & Loggers |
+| `#server` | `src/server/server.js` | Express server instance |
+| `#routes` | `src/exports/routes.js` | API Route definitions |
+| `#models` | `src/exports/models.js` | Sequelize models |
+| `#services` | `src/exports/services.js`| Business logic layers |
+| `#controllers`| `src/exports/controller.js`| HTTP request handlers |
+| `#middlewares`| `src/exports/middlewares.js`| Express middlewares |
+| `#configs` | `src/exports/configurations.js`| System configurations |
+| `#constants` | `src/exports/constants.js` | Global constants |
+| `#schemas` | `src/exports/schemas.js` | Joi/Zod schemas |
+| `#syncRoutes` | `src/routes/syncRoutes.js`| Route registration logic |
+
+---
+
+## 💻 Development Workflow
+
+1. **Add Model**: Create in `src/models`, extend `BaseModel`, register in `associations.js`.
+2. **Add Service**: Create in `src/services`, export via `src/exports/services.js`.
+3. **Add Controller**: Create in `src/controllers`, export via `src/exports/controller.js`.
+4. **Register Route**: Add to `src/routes`, export via `src/exports/routes.js`.
+
+---
+
+## 📜 NPM Scripts
+
+| Script | Command | Description |
+| :--- | :--- | :--- |
+| **`dev`** | `nodemon` | Start dev server with auto-lint-fix & type validation |
+| **`start`** | `node app.js` | Start production server |
+| **`lint`** | `eslint .` | Check for linting errors |
+| **`lint:fix`** | `eslint . --fix` | Auto-fix linting errors |
+| **`validate:types`**| `node scripts/validate-types.js` | Run custom static type validation |
+| `db:migrate` | `npx sequelize-cli db:migrate` | Run migrations |
+| `db:seed` | `npx sequelize-cli db:seed:all` | Run seeders |
+
+---
+
+## 💻 Cross-OS Compatibility
+
+The project is designed to be fully compatible with **Windows, macOS, and Linux**.
+
+- **Startup Script**: Uses a portable Node.js script (`scripts/start-dev.js`) to handle dependency checks and platform-specific commands.
+- **VS Code Integration**: The `Express Startup` task is pre-configured to work across all operating systems. 
+- **Auto-Start**: In **VS Code**, the project is configured to **automatically start** the development server as soon as you open the folder (via `runOn: folderOpen`).
 
 ---
 
@@ -110,92 +159,9 @@ Ensures all API responses follow a consistent JSON structure:
 The `Product API` serves as a blueprint for adding new features. It demonstrates:
 - **Nested Includes**: Pulling `category.name` into the top-level response.
 - **Dynamic Queries**: Passing `req.query` directly into `SequelizeUtil` for instant searching and sorting.
-- **Aliasing**: Using SQL aliasing to flatten JSON responses for the frontend.
 
 **Example Usage:**
 `GET /api/v1/products/all?search=Modern&sortBy=price&sortOrder=ASC&page=1&limit=10`
-
----
-
-## 🔐 Authentication Example
-
-Authentication is pre-integrated using `AuthService` and `JWTUtil`.
-
-### **How to Use Auth & Utils Together:**
-In the `AuthController`, we combine multiple utilities for a professional flow:
-1. **`PasswordUtil`**: To securely hash and verify passwords.
-2. **`JWTUtil`**: To generate Access and Refresh tokens.
-3. **`ResponseUtil`**: To send a standardized login result.
-
-```javascript
-// Example: Creating a token in AuthService
-const token = JWTUtil.createAccessToken({ id: user.id, email: user.email });
-return ResponseUtil.success(res, { token });
-```
-
----
-
-## 🏁 Getting Started
-
-### **1. Setup**
-```bash
-git clone https://github.com/personal-jahanzaib/express-scalable-template
-npm install
-cp .env.example .env
-```
-
-### **2. Environment Aliases**
-The template automatically detects your environment (Local, Dev, Production) based on the `NODE_ENV` and maps your variables via `env.js`.
-
-### **3. Run**
-```bash
-npm run dev
-```
-*Note: The dev script automatically runs ESLint auto-fixes before every restart!*
-
----
-
-## 🔗 Import Aliases
-
-| Alias | Target Folder |
-| :--- | :--- |
-| `#env` | `env.js` |
-| `#models` | `src/models/` |
-| `#services` | `src/services/` |
-| `#controllers` | `src/controllers/` |
-| `#utils` | `src/utils/` |
-| `#configs` | `src/configurations/` |
-
----
-
-## 💻 Development Workflow
-
-1. **Add Model**: Create in `src/models`, extend `BaseModel`.
-2. **Add Service**: Create in `src/services`, use `SequelizeUtil` for queries.
-3. **Add Controller**: Create in `src/controllers`, wrap methods in `AsyncUtil.asyncHandler`.
-4. **Register Route**: Add to `src/routes` and export via `src/exports/routes.js`.
-
----
-
-## 📜 NPM Scripts
-
-### **Development Scripts**
-
-| Script | Command | Description |
-| :--- | :--- | :--- |
-| `dev` | `nodemon` | Start dev server with auto-restart and auto-lint-fix |
-| `start` | `node app.js` | Start production server |
-| `lint` | `eslint .` | Check for linting errors |
-| `lint:fix` | `eslint . --fix` | Auto-fix linting errors |
-
-### **Database Scripts**
-
-| Script | Command | Description |
-| :--- | :--- | :--- |
-| `db:migrate` | `npx sequelize-cli db:migrate` | Run all pending migrations |
-| `db:migrate:undo` | `npx sequelize-cli db:migrate:undo` | Rollback last migration |
-| `db:seed` | `npx sequelize-cli db:seed:all` | Run all seeders |
-| `db:seed:undo` | `npx sequelize-cli db:seed:undo:all` | Undo all seeders |
 
 ---
 

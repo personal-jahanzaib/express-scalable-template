@@ -1,12 +1,26 @@
 {
-  "watch": ["src", "*.js", "*.json", ".env"],
+  "watch": [
+    "src",
+    "*.js",
+    "*.json",
+    ".env"
+  ],
   "ext": "js,json,env",
-  "ignore": ["node_modules", "dist", "build", "logs", ".git", ".eslintrc.json"],
+  "ignore": [
+    "node_modules",
+    "dist",
+    "build",
+    "logs",
+    ".git",
+    ".eslintrc.json"
+  ],
   "delay": 500,
   "verbose": false,
-  "exec": "npm run validate:types -- {{filename}} && eslint . --fix && node app.js",
+  "quiet": true,
+  "exec": "node scripts/validate-types.js {{filename}} && npx eslint . --fix && node app.js",
   "events": {
-    "restart": "echo '\n🔍 Checking code quality...\n'"
+    "start": "echo 🚀 Initializing application...",
+    "restart": "echo 🔍 Changes detected. Re-validating and restarting..."
   },
   "env": {
     "NODE_ENV": "local"
