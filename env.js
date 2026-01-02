@@ -1,16 +1,18 @@
 import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
+import ConsoleLogger from './src/utils/ConsoleLogger.js';
 
 // Check if .env file exists
 const envPath = path.resolve(process.cwd(), '.env');
+
+const logger = ConsoleLogger;
+logger.setContext('Environment');
+
 if (!fs.existsSync(envPath)) {
-  // eslint-disable-next-line no-console
-  console.error('\n❌ ERROR: .env file not found!');
-  // eslint-disable-next-line no-console
-  console.error(`Expected location: ${envPath}`);
-  // eslint-disable-next-line no-console
-  console.error('Please create a .env file with the required environment variables.\n');
+  logger.error('.env file not found!');
+  logger.error(`Expected location: ${envPath}`);
+  logger.error('Please create a .env file with the required environment variables.');
   process.exit(1);
 }
 

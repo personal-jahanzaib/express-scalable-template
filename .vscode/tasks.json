@@ -20,8 +20,12 @@
         }
       },
       "presentation": {
+        "echo": false,
         "reveal": "always",
-        "panel": "new"
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
       },
       "runOptions": {
         "runOn": "folderOpen"

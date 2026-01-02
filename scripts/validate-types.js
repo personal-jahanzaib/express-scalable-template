@@ -3,9 +3,14 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import ConsoleLogger from '../src/utils/ConsoleLogger.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
+
+// Use imported logger instance
+const logger = ConsoleLogger;
+logger.setContext('TypeValidator');
 
 /**
  * Extracts type information from variable declarations
@@ -127,7 +132,7 @@ function validateFile(filePath) {
       }
     });
   } catch (err) {
-    console.error(`Error reading file ${filePath}:`, err.message);
+    logger.error(`Error reading file ${filePath}:`, err.message);
   }
 
   return errors;
@@ -158,27 +163,26 @@ function findJSFiles(dir) {
       }
     });
   } catch (err) {
-    console.error(`Error reading directory ${dir}:`, err.message);
+    logger.error(`Error reading directory ${dir}:`, err.message);
   }
 
   return files;
 }
 
 // Main execution
-const fileArg = process.argv[2];
+const args = process.argv.slice(2);
 let jsFiles = [];
 
-if (fileArg && fileArg !== '{{filename}}') {
-  // Validate single file
-  const filePath = path.isAbsolute(fileArg)
-    ? fileArg
-    : path.join(rootDir, fileArg);
-  if (filePath.endsWith('.js')) {
-    jsFiles = [filePath];
-  }
+if (args.length > 0 && args[0] !== '{{filename}}') {
+  // Validate provided files (absolute or relative)
+  args.forEach((arg) => {
+    const filePath = path.isAbsolute(arg) ? arg : path.join(rootDir, arg);
+    if (filePath.endsWith('.js')) {
+      jsFiles.push(filePath);
+    }
+  });
 } else {
-  // Validate all files (fallback)
-  console.log('🔍 No specific file changed. Validating full project...');
+  // Validate all files (fallback) - silent
   jsFiles = findJSFiles(rootDir);
 }
 
@@ -191,15 +195,14 @@ jsFiles.forEach((file) => {
 
 // Report results
 if (allErrors.length > 0) {
-  console.error('\n❌ Type Validation Errors Found:\n');
+  logger.error('Type Validation Errors Found:');
   allErrors.forEach((err) => {
     const relPath = path.relative(rootDir, err.file);
-    console.error(`${relPath}:${err.line}`);
-    console.error(`  ${err.message}`);
-    console.error(`  Code: ${err.code}\n`);
+    logger.error(`${relPath}:${err.line}`);
+    logger.error(`  ${err.message}`);
+    logger.error(`  Code: ${err.code}\n`);
   });
   process.exit(1);
-} else {
-  console.log('✅ No type mismatches found!');
-  process.exit(0);
 }
+// Success is silent - no output needed
+process.exit(0);

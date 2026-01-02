@@ -46,8 +46,8 @@ This repository is more than just a boilerplate; it's a **Scalable Architectural
 | **Framework** | Express.js 5.x |
 | **Database** | PostgreSQL + Sequelize ORM |
 | **Security** | JWT, Helmet, CORS, Rate-Limit |
-| **Logging** | Winston + Morgan |
-| **Quality** | ESLint (Airbnb) + Custom Type Validator |
+| **Logging** | Winston + Morgan + Custom ConsoleLogger |
+| **Quality** | ESLint (Airbnb) + Custom Type Validator + Unused File Detection |
 | **Tooling** | Nodemon, VS Code Tasks |
 
 ---
@@ -85,6 +85,12 @@ Provides a global `asyncHandler` that eliminates the need for repetitive `try-ca
 
 ### **3. ResponseUtil & ErrorUtil**
 Ensures all API responses and errors follow a consistent JSON structure.
+
+### **4. ConsoleLogger (NestJS-Style)**
+A custom logger replacement for `console.log` that provides:
+-   **Context Awareness**: Logs include the source context (e.g., `[AuthService]`).
+-   **Color Coding**: Different colors for different contexts and log levels.
+-   **Clean Output**: Removes noise during development.
 
 ---
 
@@ -138,6 +144,7 @@ This allows you to maintain one `.env` file for all environments without name co
 | **`start`** | `node app.js` | Start production server |
 | **`lint`** | `eslint .` | Check for linting errors |
 | **`lint:fix`** | `eslint . --fix` | Auto-fix linting errors |
+| **`lint:unused`** | `npm run lint:unused` | Check for unused files and exports |
 | **`validate:types`**| `node scripts/validate-types.js` | Run custom static type validation |
 | `db:migrate` | `npx sequelize-cli db:migrate` | Run migrations |
 | `db:seed` | `npx sequelize-cli db:seed:all` | Run seeders |

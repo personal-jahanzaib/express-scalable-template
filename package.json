@@ -15,17 +15,19 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "npx nodemon --silent",
     "start": "node app.js",
     "test": "vitest",
     "test:run": "vitest run",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "lint:unused": "eslint --config .eslintrc.unused.json .",
     "validate:types": "node scripts/validate-types.js",
     "db:migrate": "npx sequelize-cli db:migrate",
     "db:migrate:undo": "npx sequelize-cli db:migrate:undo",
     "db:seed": "npx sequelize-cli db:seed:all",
-    "db:seed:undo": "npx sequelize-cli db:seed:undo:all"
+    "db:seed:undo": "npx sequelize-cli db:seed:undo:all",
+    "prepare": "husky"
   },
   "dependencies": {
     "compression": "^1.8.1",
@@ -46,6 +48,8 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-node": "^0.3.9",
     "eslint-plugin-import": "^2.32.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "nodemon": "^3.1.11",
     "sequelize-cli": "^6.6.3",
     "vitest": "^1.6.1"
@@ -63,5 +67,11 @@
     "#configs": "./src/exports/configurations.js",
     "#controllers": "./src/exports/controller.js",
     "#middlewares": "./src/exports/middlewares.js"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "node scripts/validate-types.js"
+    ]
   }
 }

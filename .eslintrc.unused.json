@@ -1,0 +1,33 @@
+{
+    "extends": "./.eslintrc.json",
+    "rules": {
+        "linebreak-style": 0,
+        "import/no-unused-modules": [
+            1,
+            {
+                "unusedExports": true,
+                "missingExports": false,
+                "src": [
+                    "src",
+                    "scripts",
+                    "."
+                ],
+                "ignoreExports": [
+                    "app.js",
+                    "env.js",
+                    "scripts/**/*.js",
+                    "migrations/**/*.js",
+                    "seeders/**/*.js",
+                    "src/utils/ConsoleLogger.js",
+                    "src/utils/logger.js",
+                    "src/exports/**/*.js",
+                    "src/routes/syncRoutes.js",
+                    "src/server/server.js",
+                    "config/**",
+                    ".eslintrc.*",
+                    ".husky/*"
+                ]
+            }
+        ]
+    }
+}
