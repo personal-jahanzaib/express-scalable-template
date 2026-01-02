@@ -12,3 +12,4 @@ export {
   routeLogger,
   utilLogger,
 } from '../utils/logger.js';
+export { default as Logger } from '../utils/ConsoleLogger.js';

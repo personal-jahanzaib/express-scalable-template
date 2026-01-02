@@ -14,13 +14,13 @@
     ".git",
     ".eslintrc.json"
   ],
-  "delay": 500,
+  "delay": 50,
   "verbose": false,
   "quiet": true,
-  "exec": "node scripts/validate-types.js {{filename}} && npx eslint . --fix && node app.js",
+  "exec": "node scripts/nodemon-exec.js {{filename}}",
   "events": {
-    "start": "echo 🚀 Initializing application...",
-    "restart": "echo 🔍 Changes detected. Re-validating and restarting..."
+    "start": "node scripts/nodemon-events.js start",
+    "restart": "node scripts/nodemon-events.js restart"
   },
   "env": {
     "NODE_ENV": "local"

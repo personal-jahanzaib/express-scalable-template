@@ -1,8 +1,10 @@
-/* eslint-disable no-console, no-underscore-dangle */
+#!/usr/bin/env node
+/* eslint-disable no-underscore-dangle */
 import { execSync } from 'child_process';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import ConsoleLogger from '../src/utils/ConsoleLogger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,25 +12,39 @@ const rootDir = path.join(__dirname, '..');
 
 process.chdir(rootDir);
 
+// Use imported logger instance
+const logger = ConsoleLogger;
+logger.setContext('Startup');
+
+// Read package.json for version info
+const packageJson = JSON.parse(readFileSync(path.join(rootDir, 'package.json'), 'utf-8'));
+
+// Show startup info - format: "Express Scalable Template v1.0.0"
+const appName = packageJson.name
+  .split('-')
+  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+  .join(' ');
+
+logger.info(`${appName} v${packageJson.version}`);
+logger.log('Initializing application...');
+
 if (!existsSync('node_modules')) {
-  console.log('📦 node_modules not found. Installing dependencies...');
+  logger.info('node_modules not found. Installing dependencies...');
   try {
     execSync('npm install', { stdio: 'inherit' });
   } catch (error) {
-    console.error('❌ Failed to install dependencies:', error.message);
+    logger.error(`Failed to install dependencies: ${error.message}`);
     process.exit(1);
   }
 }
 
-console.log('🚀 Starting development server...');
 try {
-  // Use 'npm run dev' which triggers nodemon
-  // We use execSync which will keep the process alive
-  execSync('npm run dev', { stdio: 'inherit' });
+  // Run nodemon directly without npm (to avoid npm output)
+  execSync('npx nodemon --silent', { stdio: 'inherit' });
 } catch (error) {
   // execSync throws if the process is terminated with a non-zero exit code
   // which is normal when stopping the task
   if (error.status !== 0 && error.status !== null) {
-    console.error('❌ Application exited with error:', error.message);
+    logger.error(`Application exited with error: ${error.message}`);
   }
 }

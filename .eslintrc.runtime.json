@@ -1,0 +1,65 @@
+{
+    "extends": "./.eslintrc.json",
+    "rules": {
+        "import/first": "off",
+        "import/newline-after-import": "off",
+        "import/no-duplicates": "off",
+        "import/no-named-as-default": "off",
+        "import/no-named-as-default-member": "off",
+        "import/no-useless-path-segments": "off",
+        "indent": "off",
+        "key-spacing": "off",
+        "lines-between-class-members": "off",
+        "max-len": "off",
+        "newline-per-chained-call": "off",
+        "no-multiple-empty-lines": "off",
+        "no-trailing-spaces": "off",
+        "object-curly-newline": "off",
+        "object-curly-spacing": "off",
+        "operator-linebreak": "off",
+        "padded-blocks": "off",
+        "prefer-const": "off",
+        "prefer-template": "off",
+        "quote-props": "off",
+        "quotes": "off",
+        "semi": "off",
+        "space-before-blocks": "off",
+        "space-before-function-paren": "off",
+        "space-in-parens": "off",
+        "space-infix-ops": "off",
+        "spaced-comment": "off",
+        "no-console": "error",
+        "no-debugger": "error",
+        "no-dupe-args": "error",
+        "no-dupe-keys": "error",
+        "no-duplicate-case": "error",
+        "no-empty": "error",
+        "no-ex-assign": "error",
+        "no-extra-boolean-cast": "error",
+        "no-func-assign": "error",
+        "no-obj-calls": "error",
+        "no-sparse-arrays": "error",
+        "no-unexpected-multiline": "error",
+        "no-unreachable": "error",
+        "no-unsafe-finally": "error",
+        "no-unsafe-negation": "error",
+        "use-isnan": "error",
+        "valid-typeof": "error"
+    },
+    "overrides": [
+        {
+            "files": [
+                "migrations/*.js",
+                "seeders/*.js",
+                "src/utils/logger.js"
+            ],
+            "rules": {
+                "import/no-named-export": "off",
+                "import/prefer-default-export": "off",
+                "camelcase": "off",
+                "no-unused-vars": "off",
+                "max-len": "off"
+            }
+        }
+    ]
+}

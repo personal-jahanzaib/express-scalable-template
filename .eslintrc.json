@@ -30,7 +30,41 @@
             ],
             "rules": {
                 "no-restricted-imports": "off",
+                "import/extensions": "off",
+                "import/no-named-export": "off",
+                "import/prefer-default-export": "off"
+            }
+        },
+        {
+            "files": [
+                "scripts/**/*.js",
+                "env.js"
+            ],
+            "rules": {
+                "no-restricted-imports": "off",
                 "import/extensions": "off"
+            }
+        },
+        {
+            "files": [
+                "src/utils/ConsoleLogger.js"
+            ],
+            "rules": {
+                "no-console": "off"
+            }
+        },
+        {
+            "files": [
+                "migrations/*.js",
+                "seeders/*.js",
+                "src/utils/logger.js"
+            ],
+            "rules": {
+                "import/no-named-export": "off",
+                "import/prefer-default-export": "off",
+                "camelcase": "off",
+                "no-unused-vars": "off",
+                "max-len": "off"
             }
         }
     ],
@@ -53,6 +87,8 @@
                 ]
             }
         ],
+        // Disallow console.log - Use ConsoleLogger instead
+        "no-console": "error",
         // ============================================================================
         // BEST PRACTICE RULES (Suggested)
         // ============================================================================
@@ -148,7 +184,8 @@
         // AIRBNB OVERRIDES (Relaxed for flexibility)
         // ============================================================================
         // Allow unnamed default exports
-        "import/prefer-default-export": "off",
+        "import/prefer-default-export": "error",
+        "import/no-named-export": "error",
         // Disable unresolved imports (Node.js handles # imports natively)
         "import/no-unresolved": "off",
         // Allow underscore dangle for private methods
