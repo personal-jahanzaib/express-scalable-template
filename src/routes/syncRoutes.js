@@ -1,9 +1,18 @@
-import config from '#env';
-import server from '#server';
+import { Router } from 'express';
+import { ResponseUtil } from '#utils';
 import { authMiddleware } from '#middlewares';
 import { authRoutes, productRoutes } from '#routes';
+import { httpResponse } from '#constants';
 
-const { prefix, version } = config.api;
+const apiRouter = Router();
 
-server.use(`/${prefix}/${version}/auth`, authRoutes);
-server.use(`/${prefix}/${version}/products`, authMiddleware, productRoutes);
+// Feature routes
+apiRouter.use('/auth', authRoutes);
+apiRouter.use('/products', authMiddleware, productRoutes);
+
+// 404 handler - ONLY for API routes
+apiRouter.use((req, res) => {
+  ResponseUtil.error(res, httpResponse.NOT_FOUND.api, httpResponse.NOT_FOUND.code);
+});
+
+export default apiRouter;

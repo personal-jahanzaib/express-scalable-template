@@ -42,6 +42,8 @@ const httpResponse = {
   NOT_FOUND: {
     code: 404,
     message: 'Resource not found',
+    api: 'API endpoint not found',
+    routes: 'Route not found',
   },
   METHOD_NOT_ALLOWED: {
     code: 405,

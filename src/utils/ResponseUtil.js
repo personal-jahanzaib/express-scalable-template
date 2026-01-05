@@ -8,27 +8,45 @@ class ResponseUtil {
     message = httpResponse.OK.message,
     statusCode = httpResponse.OK.code,
   ) {
-    return res.status(statusCode).json({
+    const response = {
       success: true,
       message,
-      data,
-    });
+    };
+
+    // Only include data key if data exists
+    if (data !== null && typeof data !== 'undefined') {
+      response.data = data;
+    }
+
+    return res.status(statusCode).json(response);
   }
 
   static created(res, data = null, message = httpResponse.CREATED.message) {
-    return res.status(httpResponse.CREATED.code).json({
+    const response = {
       success: true,
       message,
-      data,
-    });
+    };
+
+    // Only include data key if data exists
+    if (data !== null && typeof data !== 'undefined') {
+      response.data = data;
+    }
+
+    return res.status(httpResponse.CREATED.code).json(response);
   }
 
   static updated(res, data = null, message = 'Resource updated successfully') {
-    return res.status(httpResponse.OK.code).json({
+    const response = {
       success: true,
       message,
-      data,
-    });
+    };
+
+    // Only include data key if data exists
+    if (data !== null && typeof data !== 'undefined') {
+      response.data = data;
+    }
+
+    return res.status(httpResponse.OK.code).json(response);
   }
 
 
@@ -36,7 +54,6 @@ class ResponseUtil {
     return res.status(httpResponse.OK.code).json({
       success: true,
       message,
-      data: null,
     });
   }
 

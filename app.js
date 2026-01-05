@@ -1,4 +1,3 @@
-import '#syncRoutes';
 import config from '#env';
 import server from '#server';
 import { Logger } from '#utils';
