@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 import { execSync } from 'child_process';
-import ConsoleLogger from '../src/utils/ConsoleLogger.js';
+import Logger from '../src/utils/Logger.js';
 
-const logger = ConsoleLogger;
-logger.setContext('DevServer');
+const logger = new Logger('DevServer');
 
 const args = process.argv.slice(2);
 const filename = args[0];

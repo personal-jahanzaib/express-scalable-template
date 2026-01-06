@@ -18,7 +18,6 @@
                     "scripts/**/*.js",
                     "migrations/**/*.js",
                     "seeders/**/*.js",
-                    "src/utils/ConsoleLogger.js",
                     "src/utils/logger.js",
                     "src/exports/**/*.js",
                     "src/routes/syncRoutes.js",

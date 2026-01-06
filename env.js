@@ -1,13 +1,13 @@
 import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
-import ConsoleLogger from './src/utils/ConsoleLogger.js';
+import Logger from './src/utils/Logger.js';
 
 // Check if .env file exists
 const envPath = path.resolve(process.cwd(), '.env');
 
-const logger = ConsoleLogger;
-logger.setContext('Environment');
+const logger = new Logger('Environment');
+
 
 if (!fs.existsSync(envPath)) {
   logger.error('.env file not found!');

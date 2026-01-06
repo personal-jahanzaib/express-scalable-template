@@ -47,14 +47,6 @@
         },
         {
             "files": [
-                "src/utils/ConsoleLogger.js"
-            ],
-            "rules": {
-                "no-console": "off"
-            }
-        },
-        {
-            "files": [
                 "migrations/*.js",
                 "seeders/*.js",
                 "src/utils/logger.js"

@@ -2,59 +2,55 @@
 import { httpResponse } from '#constants';
 
 class ResponseUtil {
+  /**
+   * Private helper to build response object
+   * @param {boolean} success - Success status
+   * @param {string} message - Response message
+   * @param {*} data - Optional data payload
+   * @param {*} errors - Optional errors array/object
+   * @returns {Object} Response object
+   */
+  static #buildResponse(success, message, data = null, errors = null) {
+    const response = { success, message };
+
+    if (data !== null && typeof data !== 'undefined') {
+      response.data = data;
+    }
+
+    if (errors !== null && typeof errors !== 'undefined') {
+      response.errors = errors;
+    }
+
+    return response;
+  }
+
   static success(
     res,
     data = null,
     message = httpResponse.OK.message,
     statusCode = httpResponse.OK.code,
   ) {
-    const response = {
-      success: true,
-      message,
-    };
-
-    // Only include data key if data exists
-    if (data !== null && typeof data !== 'undefined') {
-      response.data = data;
-    }
-
-    return res.status(statusCode).json(response);
+    return res.status(statusCode).json(
+      this.#buildResponse(true, message, data),
+    );
   }
 
   static created(res, data = null, message = httpResponse.CREATED.message) {
-    const response = {
-      success: true,
-      message,
-    };
-
-    // Only include data key if data exists
-    if (data !== null && typeof data !== 'undefined') {
-      response.data = data;
-    }
-
-    return res.status(httpResponse.CREATED.code).json(response);
+    return res.status(httpResponse.CREATED.code).json(
+      this.#buildResponse(true, message, data),
+    );
   }
 
-  static updated(res, data = null, message = 'Resource updated successfully') {
-    const response = {
-      success: true,
-      message,
-    };
-
-    // Only include data key if data exists
-    if (data !== null && typeof data !== 'undefined') {
-      response.data = data;
-    }
-
-    return res.status(httpResponse.OK.code).json(response);
+  static updated(res, data = null, message = httpResponse.UPDATED.message) {
+    return res.status(httpResponse.OK.code).json(
+      this.#buildResponse(true, message, data),
+    );
   }
 
-
-  static deleted(res, message = 'Resource deleted successfully') {
-    return res.status(httpResponse.OK.code).json({
-      success: true,
-      message,
-    });
+  static deleted(res, message = httpResponse.DELETED.message) {
+    return res.status(httpResponse.OK.code).json(
+      this.#buildResponse(true, message),
+    );
   }
 
   static error(
@@ -63,69 +59,39 @@ class ResponseUtil {
     statusCode = httpResponse.INTERNAL_SERVER_ERROR.code,
     errors = null,
   ) {
-    const response = {
-      success: false,
-      message,
-    };
-
-    // Only include errors key if errors exist
-    if (errors) {
-      response.errors = errors;
-    }
-
-    return res.status(statusCode).json(response);
+    return res.status(statusCode).json(
+      this.#buildResponse(false, message, null, errors),
+    );
   }
-
 
   static unauthorized(res, message = httpResponse.UNAUTHORIZED.message) {
-    return res.status(httpResponse.UNAUTHORIZED.code).json({
-      success: false,
-      message,
-    });
+    return res.status(httpResponse.UNAUTHORIZED.code).json(
+      this.#buildResponse(false, message),
+    );
   }
-
 
   static forbidden(res, message = httpResponse.FORBIDDEN.message) {
-    return res.status(httpResponse.FORBIDDEN.code).json({
-      success: false,
-      message,
-    });
+    return res.status(httpResponse.FORBIDDEN.code).json(
+      this.#buildResponse(false, message),
+    );
   }
-
 
   static notFound(res, message = httpResponse.NOT_FOUND.message) {
-    return res.status(httpResponse.NOT_FOUND.code).json({
-      success: false,
-      message,
-    });
+    return res.status(httpResponse.NOT_FOUND.code).json(
+      this.#buildResponse(false, message),
+    );
   }
-
 
   static badRequest(res, message = httpResponse.BAD_REQUEST.message, errors = null) {
-    const response = {
-      success: false,
-      message,
-    };
-
-    if (errors) {
-      response.errors = errors;
-    }
-
-    return res.status(httpResponse.BAD_REQUEST.code).json(response);
+    return res.status(httpResponse.BAD_REQUEST.code).json(
+      this.#buildResponse(false, message, null, errors),
+    );
   }
 
-
   static validationError(res, errors, message = httpResponse.UNPROCESSABLE_ENTITY.message) {
-    const response = {
-      success: false,
-      message,
-    };
-
-    if (errors) {
-      response.errors = errors;
-    }
-
-    return res.status(httpResponse.UNPROCESSABLE_ENTITY.code).json(response);
+    return res.status(httpResponse.UNPROCESSABLE_ENTITY.code).json(
+      this.#buildResponse(false, message, null, errors),
+    );
   }
 }
 

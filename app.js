@@ -2,9 +2,7 @@ import config from '#env';
 import server from '#server';
 import { Logger } from '#utils';
 
-
-const logger = Logger;
-logger.setContext('Application');
+const logger = new Logger('Application');
 
 logger.info(`Environment: ${config.server.environment.toUpperCase()}`);
 logger.info('Loading routes and middleware...');

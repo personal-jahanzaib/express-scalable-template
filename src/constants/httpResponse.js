@@ -23,6 +23,14 @@ const httpResponse = {
     code: 204,
     message: 'No content',
   },
+  UPDATED: {
+    code: 200,
+    message: 'Resource updated successfully',
+  },
+  DELETED: {
+    code: 200,
+    message: 'Resource deleted successfully',
+  },
 
   // ============================================================================
   // CLIENT ERROR RESPONSES (4xx)

@@ -4,12 +4,4 @@ export { default as ResponseUtil } from '../utils/ResponseUtil.js';
 export { default as ErrorUtil } from '../utils/ErrorUtil.js';
 export { default as AsyncUtil } from '../utils/AsyncUtil.js';
 export { default as SequelizeUtil } from '../utils/SequelizeUtil.js';
-export {
-  controllerLogger,
-  databaseLogger,
-  serviceLogger,
-  middlewareLogger,
-  routeLogger,
-  utilLogger,
-} from '../utils/logger.js';
-export { default as Logger } from '../utils/ConsoleLogger.js';
+export { default as Logger } from '../utils/Logger.js';

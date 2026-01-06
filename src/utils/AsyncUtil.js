@@ -1,5 +1,8 @@
-import { ResponseUtil, controllerLogger } from '#utils';
+import { ResponseUtil, Logger } from '#utils';
 import { httpResponse } from '#constants';
+
+// Create logger instance for this module
+const logger = new Logger('Controller');
 
 class AsyncUtil {
   static asyncHandler(fn) {
@@ -9,9 +12,9 @@ class AsyncUtil {
       } catch (error) {
         // Log the error only if shouldLog exists and is true, or if it's missing (unexpected error)
         if (error.shouldLog !== false) {
-          controllerLogger.error(`Controller error: ${error.message}`);
+          logger.error(`Controller error: ${error.message}`);
           if (error.stack) {
-            controllerLogger.debug(error.stack);
+            logger.debug(error.stack);
           }
         }
 

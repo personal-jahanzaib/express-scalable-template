@@ -11,7 +11,7 @@ apiRouter.use('/auth', authRoutes);
 apiRouter.use('/products', authMiddleware, productRoutes);
 
 // 404 handler - ONLY for API routes
-apiRouter.use((req, res) => {
+apiRouter.use((_, res) => {
   ResponseUtil.error(res, httpResponse.NOT_FOUND.api, httpResponse.NOT_FOUND.code);
 });
 

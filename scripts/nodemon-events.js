@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-import ConsoleLogger from '../src/utils/ConsoleLogger.js';
+import Logger from '../src/utils/Logger.js';
 
-const logger = ConsoleLogger;
-logger.setContext('Nodemon');
+const logger = new Logger('Nodemon');
 const event = process.argv[2];
 
 if (event === 'start') {

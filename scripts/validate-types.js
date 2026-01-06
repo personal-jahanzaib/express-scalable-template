@@ -3,14 +3,11 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import ConsoleLogger from '../src/utils/ConsoleLogger.js';
+import Logger from '../src/utils/Logger.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
 
-// Use imported logger instance
-const logger = ConsoleLogger;
-logger.setContext('TypeValidator');
 
 /**
  * Extracts type information from variable declarations
@@ -132,7 +129,7 @@ function validateFile(filePath) {
       }
     });
   } catch (err) {
-    logger.error(`Error reading file ${filePath}:`, err.message);
+    Logger.error(`Error reading file ${filePath}:`, err.message);
   }
 
   return errors;
@@ -163,7 +160,7 @@ function findJSFiles(dir) {
       }
     });
   } catch (err) {
-    logger.error(`Error reading directory ${dir}:`, err.message);
+    Logger.error(`Error reading directory ${dir}:`, err.message);
   }
 
   return files;
@@ -195,12 +192,12 @@ jsFiles.forEach((file) => {
 
 // Report results
 if (allErrors.length > 0) {
-  logger.error('Type Validation Errors Found:');
+  Logger.error('Type Validation Errors Found:');
   allErrors.forEach((err) => {
     const relPath = path.relative(rootDir, err.file);
-    logger.error(`${relPath}:${err.line}`);
-    logger.error(`  ${err.message}`);
-    logger.error(`  Code: ${err.code}\n`);
+    Logger.error(`${relPath}:${err.line}`);
+    Logger.error(`  ${err.message}`);
+    Logger.error(`  Code: ${err.code}\n`);
   });
   process.exit(1);
 }

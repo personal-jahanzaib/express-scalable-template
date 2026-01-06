@@ -4,7 +4,7 @@ import { execSync } from 'child_process';
 import { existsSync, readFileSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import ConsoleLogger from '../src/utils/ConsoleLogger.js';
+import Logger from '../src/utils/Logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,9 +12,7 @@ const rootDir = path.join(__dirname, '..');
 
 process.chdir(rootDir);
 
-// Use imported logger instance
-const logger = ConsoleLogger;
-logger.setContext('Startup');
+const logger = new Logger('Startup');
 
 // Read package.json for version info
 const packageJson = JSON.parse(readFileSync(path.join(rootDir, 'package.json'), 'utf-8'));
